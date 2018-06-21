@@ -8,8 +8,8 @@ app.use(express.static(__dirname+'/public'));
 app.use((req, res, next) => {
     var now = new Date().toString();
     console.log(`${now}: ${req.method} : ${req.url} `);
-    res.render('maintainance-message.hbs');
-    //next();
+   // res.render('maintainance-message.hbs');
+    next();
 })
 hbs.registerHelper('getCurrentYear', () => {
     return new Date().getFullYear();
@@ -21,6 +21,12 @@ hbs.registerHelper('screamIt', (text) => {
 app.get('/', (req, res) => {
     // res.send('<h1>Hello Express!!</h1>');
     res.send({name:'Piyush'});
+});
+app.get('/porjects', (req, res) => {
+    // res.send('<h1>Hello Express!!</h1>');
+    res.render('porjects.hbs', {
+        pageTitle:'Projects'
+    });
 });
 app.get('/about', (req, res) => {
  res.render('about.hbs', {
